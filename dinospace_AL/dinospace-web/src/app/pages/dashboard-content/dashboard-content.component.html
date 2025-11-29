@@ -1,0 +1,257 @@
+<!-- src/app/pages/dashboard-content/dashboard-content.component.html -->
+<div class="content" *ngIf="userData">
+
+    <!-- Sección para mostrar el perfil del usuario -->
+    <section class="card profile-card" *ngIf="!isEditing">
+        <div class="card-header">
+            <div class="header-content">
+                <div class="icon-wrapper">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Tu perfil</h3>
+            </div>
+            <!-- Botón para activar el modo edición -->
+            <button class="edit-btn" (click)="editProfile()">
+                <i class="fas fa-edit"></i> Editar
+            </button>
+        </div>
+
+        <!-- Muestra la información del usuario en formato de grid -->
+
+
+        <div class="profile-grid">
+
+        <div class="profile-item">
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-details">
+                <span class="label">Edad:</span>
+                <span class="value">{{ userData.edad }}</span>
+            </div>
+        </div>            
+            <div class="profile-item">
+                <div class="profile-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="profile-details">
+                    <span class="label">Ciclo:</span>
+                    <span class="value">{{ userData.ciclo }}</span>
+                </div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="profile-details">
+                    <span class="label">Sentimiento:</span>
+                    <span class="value">{{ userData.estado_emocional }}</span>
+                </div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="profile-details">
+                    <span class="label">Sueño promedio:</span>
+                    <span class="value">{{ userData.horas_sueno }} horas</span>
+                </div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-icon">
+                    <i class="fas fa-running"></i>
+                </div>
+                <div class="profile-details">
+                    <span class="label">Actividad física:</span>
+                    <span class="value">{{ userData.actividad }}</span>
+                </div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="profile-details">
+                    <span class="label">Motivación:</span>
+                    <span class="value">{{ userData.motivacion }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario para editar el perfil del usuario -->
+    <section class="card profile-card" *ngIf="isEditing">
+        <div class="card-header">
+            <div class="header-content">
+                <div class="icon-wrapper">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h3>Actualizar información</h3>
+            </div>
+        </div>
+
+        <!-- Formulario con todos los campos editables -->
+
+
+        <div class="form-grid">
+
+             <div class="form-grid">
+                <div class="form-group">
+                    <label for="edad">
+                        <i class="fas fa-user"></i> Edad
+                    </label>
+                    <input 
+                        type="number"
+                        id="edad"
+                        min="17"
+                        max="65"
+                        [(ngModel)]="formData.edad"
+                        placeholder="Ingresa tu edad"
+                    >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ciclo">
+                    <i class="fas fa-graduation-cap"></i> Ciclo
+                </label>
+                <select id="ciclo" [(ngModel)]="formData.ciclo">
+                    <option value="">Selecciona</option>
+                    <option value="1er">1er</option>
+                    <option value="2do">2do</option>
+                    <option value="3ro">3ro</option>
+                    <option value="4to">4to</option>
+                    <option value="5to a más">5to a más</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="estadoEmocional">
+                    <i class="fas fa-heart"></i> ¿Cómo te sientes ahora mismo?
+                </label>
+                <select id="estadoEmocional" [(ngModel)]="formData.estadoEmocional">
+                    <option value="">Selecciona</option>
+                    <option value="Estresado">Estresado</option>
+                    <option value="Triste">Triste</option>
+                    <option value="Decepcionado">Decepcionado</option>
+                    <option value="Enojado">Enojado</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="horasSueno">
+                    <i class="fas fa-bed"></i> Horas de sueño
+                </label>
+                <select id="horasSueno" [(ngModel)]="formData.horasSueno">
+                    <option value="">Selecciona</option>
+                    <option value="Menos de 5 horas">Menos de 5 horas</option>
+                    <option value="Entre 5 o 6 horas">Entre 5 o 6 horas</option>
+                    <option value="Entre 6 u 8 horas">Entre 6 u 8 horas</option>
+                    <option value="Más de 8 horas">Más de 8 horas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="actividad">
+                    <i class="fas fa-running"></i> ¿Practicas alguna actividad física?
+                </label>
+                <select id="actividad" [(ngModel)]="formData.actividad">
+                    <option value="">Selecciona</option>
+                    <option value="Si">Sí</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="motivacion">
+                    <i class="fas fa-fire"></i> Motivación
+                </label>
+                <select id="motivacion" [(ngModel)]="formData.motivacion">
+                    <option value="">Selecciona</option>
+                    <option value="Consejos prácticos">Consejos prácticos</option>
+                    <option value="Historias motivadoras">Historias motivadoras</option>
+                    <option value="Técnicas de estudio">Técnicas de estudio</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <!-- Botones para guardar o cancelar los cambios -->
+            <div class="btn-group">
+                <button class="save-btn" (click)="saveProfile()">
+                    <i class="fas fa-check"></i> Guardar
+                </button>
+                <button class="cancel-btn" (click)="cancelEdit()">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección que muestra el reto diario personalizado -->
+    <section class="card challenge-card">
+        <div class="card-header">
+            <div class="header-content">
+                <div class="icon-wrapper challenge-icon">
+                    <i class="fas fa-flag"></i>
+                </div>
+                <h3>Reto de hoy</h3>
+            </div>
+            <!-- Muestra la categoría del reto -->
+            <div class="motivacion-badge" *ngIf="retoDiario">
+                {{ retoDiario.categoria }}
+            </div>
+        </div>
+
+        <!-- Contenido del reto diario -->
+        <div class="challenge-content" *ngIf="!cargandoReto && retoDiario; else loadingReto">
+            <div class="reto-header">
+                <!-- Muestra la dificultad del reto -->
+                <div class="dificultad-badge" [class]="(retoDiario.dificultad || 'Fácil').toLowerCase()">
+                    {{ retoDiario.dificultad || 'Fácil' }}
+                </div>
+                <!-- Muestra la duración del reto -->
+                <div class="reto-tiempo">
+                    <i class="fas fa-clock"></i>
+                    {{ retoDiario.duracion || '25 minutos' }}
+                </div>
+            </div>
+
+            <!-- Título y descripción del reto -->
+            <h2 class="reto-titulo">{{ retoDiario.titulo }}</h2>
+            <p class="reto-descripcion">{{ retoDiario.descripcion }}</p>
+
+            <!-- Pie del reto mostrando la categoría personalizada -->
+            <div class="reto-footer">
+                <div class="categoria-tag">
+                    <i class="fas fa-tag"></i>
+                    Basado en tu motivación: {{ userData?.motivacion || 'Consejos prácticos' }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Muestra un spinner mientras carga el reto -->
+        <ng-template #loadingReto>
+            <div class="loading-reto">
+                <div class="spinner"></div>
+                <p>Buscando tu reto ideal...</p>
+            </div>
+        </ng-template>
+    </section>
+
+    <!-- Sección que muestra consejos del día -->
+    <section class="card advice-card">
+        <div class="card-header">
+            <div class="header-content">
+                <div class="icon-wrapper">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Consejos del día</h3>
+            </div>
+        </div>
+        <div class="advice-content">
+            <!-- Muestra el consejo del día o uno por defecto -->
+            <p>{{ consejoDelDia?.descripcion || 'Hoy es un buen día para avanzar' }}</p>
+            <div class="decoration">✦</div>
+        </div>
+    </section>
+
+</div>

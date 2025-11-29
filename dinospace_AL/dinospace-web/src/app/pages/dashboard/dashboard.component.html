@@ -1,0 +1,63 @@
+<div class="dashboard-wrapper">
+    <!-- Encabezado de la aplicación -->
+    <header class="header">
+        <div class="logo-area">
+            <img src="assets/images/dino_space1.png" class="logo" alt="DinoSpace" />
+            <div class="title-box">
+                <h1 class="title">DINOSPACE</h1>
+                <span class="subtitle">Tu sitio de apoyo emocional</span>
+            </div>
+        </div>
+
+        <!-- Botón para abrir/cerrar el menú en móviles -->
+        <button class="menu-toggle" (click)="toggleMenu()">
+            <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
+        </button>
+
+        <!-- Botón para cerrar sesión -->
+        <button (click)="logout()" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="logout-text">Cerrar sesión</span>
+        </button>
+    </header>
+
+    <!-- Muestra un mensaje de bienvenida con el nombre del usuario -->
+    <div class="welcome-message" *ngIf="user">
+        <h2>BIENVENIDO, {{ (user.name || 'Usuario') | uppercase }}</h2>
+    </div>
+
+    <!-- Menú de navegación principal -->
+    <div class="navbar-container">
+        <nav class="navbar" [class.active]="isMenuOpen">
+            <!-- Enlace a la página de inicio -->
+            <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                (click)="closeMenu()">
+                <i class="fas fa-home"></i>
+                <span>INICIO</span>
+            </a>
+
+            <!-- Enlace a la página de reto diario -->
+            <a routerLink="/dashboard/reto-diario" routerLinkActive="active" (click)="closeMenu()">
+                <i class="fas fa-trophy"></i>
+                <span>RETO DIARIO</span>
+            </a>
+
+            <!-- Enlace a la página de recomendaciones -->
+            <a routerLink="/dashboard/recomendaciones" routerLinkActive="active" (click)="closeMenu()">
+                <i class="fas fa-star"></i>
+                <span>RECOMENDACIONES</span>
+            </a>
+
+            <!-- Enlace a la página del chat con Dinobot -->
+            <a routerLink="/dashboard/dinobot" routerLinkActive="active" (click)="closeMenu()">
+                <i class="fas fa-robot"></i>
+                <span>DINOBOT</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Área donde se carga el contenido de cada página -->
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

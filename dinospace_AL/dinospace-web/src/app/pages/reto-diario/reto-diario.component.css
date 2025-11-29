@@ -1,0 +1,279 @@
+:root {
+  --card-bg: #0a1929;
+  --primary: #6de1df;
+  --secondary: #ff6b6b;
+  --text-light: #e0f2fe;
+  --text-muted: #88a4ba;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  --glow-secondary: rgba(255, 107, 107, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0a1929 0%, #122738 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  color: var(--text-light);
+}
+
+.reto-wrapper {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.reto-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 0 0px transparent;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.reto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(109, 225, 223, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+/* BORDE BRILLANTE - SOLO EL CONTORNO */
+.reto-card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: var(--border-radius);
+  background: conic-gradient(from 0deg, #6de1df, #4fa8a6, #6de1df);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: -1;
+  filter: blur(10px);
+}
+
+.reto-card:hover {
+  border: 2px solid #6de1df;
+  transform: translateY(-5px);
+  /* EL FONDO SE MANTIENE IGUAL - NO CAMBIA */
+  background: var(--card-bg) !important;
+  box-shadow: 0 0 0px transparent !important;
+}
+
+.reto-card:hover::before {
+  left: 100%;
+}
+
+.reto-card:hover::after {
+  opacity: 0.7;
+}
+
+/* Columna izquierda */
+.info {
+  flex: 2;
+  color: var(--text-light);
+  position: relative;
+  z-index: 1;
+}
+
+.titulo {
+  color: #6de1df;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  transition: var(--transition);
+}
+
+.reto-card:hover .titulo {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(109, 225, 223, 0.7);
+  transform: scale(1.02);
+}
+
+.descripcion {
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  transition: var(--transition);
+}
+
+.reto-card:hover .descripcion {
+  color: var(--text-light);
+}
+
+.badges {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.reto-card:hover .badge {
+  background: rgba(109, 225, 223, 0.1);
+  box-shadow: 0 0 8px rgba(109, 225, 223, 0.3);
+  transform: translateY(-2px);
+}
+
+.bloques {
+  display: grid;
+  gap: 18px;
+}
+
+.bloque {
+  background: #132028;
+  padding: 14px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.reto-card:hover .bloque {
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.bloque h3 {
+  color: var(--secondary);
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+}
+
+/* Columna derecha */
+.dino {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.dino img {
+  max-width: 180px;
+  filter: drop-shadow(0 0 12px var(--glow-secondary));
+  transition: var(--transition);
+}
+
+.reto-card:hover .dino img {
+  filter: drop-shadow(0 0 20px var(--glow-secondary));
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Estilos para la lista de pasos */
+.lista-pasos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.paso-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 4px 0;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.icono-paso {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  filter: drop-shadow(0 0 2px rgba(109, 225, 223, 0.4));
+  transition: var(--transition);
+}
+
+.paso-item:hover .icono-paso {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 4px rgba(109, 225, 223, 0.8));
+}
+
+.paso-item span {
+  color: var(--text-muted);
+  line-height: 1.3;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.paso-item:hover span {
+  color: var(--text-light);
+}
+
+.paso-item strong {
+  color: #6de1df;
+  font-weight: bold;
+}
+
+/* Efectos hover suaves */
+.reto-card:hover .paso-item {
+  transform: translateX(2px);
+}
+
+.reto-card:hover .paso-item:hover {
+  transform: translateX(4px);
+}
+
+/* No reto */
+.no-reto {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reto-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dino img {
+    max-width: 140px;
+  }
+
+  .badges {
+    justify-content: center;
+  }
+
+  .reto-card::after {
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+  }
+}

@@ -1,0 +1,84 @@
+<div class="chatbot-container" role="application" aria-label="DinoBot chat">
+    <!-- Encabezado del chat -->
+    <div class="chatbot-header">
+        <div class="chatbot-title">
+            <div class="dino-avatar">
+                <!-- Muestra la imagen del avatar de DinoBot -->
+                <img src="assets/images/dino_bot.png" alt="DinoBot" class="avatar-img" />
+            </div>
+            <div class="title-content">
+                <h1>DinoBot</h1>
+                <p>Tu asistente emocional inteligente</p>
+            </div>
+        </div>
+
+        <div class="chatbot-actions">
+            <!-- Botón para reiniciar la conversación -->
+            <button class="reset-btn" (click)="clearChat()" title="Reiniciar conversación">
+                🔄
+            </button>
+            <!-- Indicador de estado en línea -->
+            <div class="chatbot-status">
+                <span class="status-dot"></span>
+                <span class="status-text">En línea</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de mensajes del chat -->
+    <div class="chat-messages" #messageContainer>
+        <!-- Muestra el botón inicial cuando no hay conversación -->
+        <div *ngIf="showInitialButton" class="initial-button-container">
+            <div class="welcome-message">
+                <p>¡Hola! Soy DinoBot</p>
+                <p>Tu asistente emocional</p>
+            </div>
+            <!-- Botón para iniciar la conversación -->
+            <button class="start-btn" (click)="startConversation()">
+                Hola
+            </button>
+        </div>
+
+        <!-- Recorre y muestra todos los mensajes de la conversación -->
+        <ng-container *ngFor="let m of messages">
+            <div class="message" [ngClass]="m.type === 'bot' ? 'bot-message' : 'user-message'">
+
+                <!-- Muestra el avatar del bot en sus mensajes -->
+                <div *ngIf="m.type === 'bot'" class="message-avatar">
+                    <img src="assets/images/dino_bot.png" class="avatar-img" />
+                </div>
+
+                <div class="message-content">
+                    <div class="message-bubble">
+                        <!-- Muestra el texto del mensaje -->
+                        <p class="message-text" [innerHTML]="m.text"></p>
+
+                        <!-- Muestra las opciones de respuesta en los mensajes del bot -->
+                        <div class="in-message-options" *ngIf="m.options?.length">
+                            <button *ngFor="let opt of m.options" class="option-btn" (click)="selectOption(opt)">
+                                {{ opt }}
+                            </button>
+                        </div>
+
+                        <!-- Muestra la hora del mensaje -->
+                        <span class="message-time">{{ m.time }}</span>
+                    </div>
+                </div>
+
+                <!-- Muestra el avatar del usuario en sus mensajes -->
+                <div *ngIf="m.type === 'user'" class="message-avatar">
+                    <img src="assets/images/dino_feliz.png" class="avatar-img" />
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Muestra indicador de carga cuando el bot está respondiendo -->
+        <div *ngIf="isLoading" class="loading-indicator">
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>

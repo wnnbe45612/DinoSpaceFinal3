@@ -1,0 +1,257 @@
+/* ============================
+   CONTENIDO PRINCIPAL
+============================ */
+.content {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 25px;
+  position: relative;
+}
+
+/* Tarjetas generales - ACTUALIZADO CON NUEVO COLOR */
+.card {
+  background: #132830;
+  padding: 0;
+  border-radius: 20px;
+  color: #e8f4f2;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(31, 255, 213, 0.15);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(31, 255, 213, 0.3);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #1fffd5, #00c997);
+  padding: 20px 25px;
+  color: #0b141a;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* PERFIL */
+.profile-card {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.profile-grid {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(31, 255, 213, 0.2);
+}
+
+.profile-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: #9fefe9;
+}
+
+.value {
+  font-weight: 500;
+  color: #1fffd5;
+  background: rgba(31, 255, 213, 0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* RETO */
+.challenge-card {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-card .card-header {
+  flex-shrink: 0;
+}
+
+.challenge-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-title {
+  margin: 20px 25px 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #e8f4f2;
+}
+
+.challenge-desc {
+  margin: 0 25px 20px;
+  color: #b0d4cf;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.challenge-btn {
+  background: linear-gradient(135deg, #28e86a, #20c997);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin: 0 25px 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(40, 232, 106, 0.3);
+}
+
+.challenge-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(40, 232, 106, 0.4);
+}
+
+/* CONSEJO */
+.advice-card {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.advice-content {
+  padding: 30px 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.advice-content p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e8f4f2;
+  flex-grow: 1;
+}
+
+.decoration {
+  font-size: 32px;
+  color: #1fffd5;
+  margin-left: 20px;
+  opacity: 0.7;
+}
+
+/* DINO */
+.dino-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.dino-img {
+  width: 230px;
+  filter: drop-shadow(0px 0px 15px rgba(0, 255, 200, 0.4));
+  transition: transform 0.5s ease;
+}
+
+.dino-img:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .profile-card {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .challenge-card {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .advice-card {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .dino-img {
+    width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    gap: 15px;
+  }
+
+  .card-header {
+    padding: 15px 20px;
+  }
+
+  .profile-grid,
+  .challenge-content,
+  .advice-content {
+    padding: 20px;
+  }
+
+  .dino-img {
+    width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .advice-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .decoration {
+    margin-left: 0;
+  }
+
+  .dino-img {
+    width: 120px;
+  }
+}

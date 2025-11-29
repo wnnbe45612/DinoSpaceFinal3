@@ -1,0 +1,51 @@
+<div class="reto-wrapper" *ngIf="reto; else sinReto">
+    <div class="reto-card">
+
+        <!-- Sección izquierda con la información del reto -->
+        <div class="info">
+            <!-- Título y descripción del reto -->
+            <h2 class="titulo">{{ reto.titulo }}</h2>
+            <p class="descripcion">{{ reto.descripcion }}</p>
+
+            <!-- Etiquetas que muestran dificultad, duración y categoría -->
+            <div class="badges">
+                <span class="badge">{{ reto.dificultad }}</span>
+                <span class="badge">{{ reto.duracion }}</span>
+                <span class="badge">{{ reto.categoria }}</span>
+            </div>
+
+            <!-- Bloques de información detallada del reto -->
+            <div class="bloques">
+                <div class="bloque">
+                    <h3>Objetivo</h3>
+                    <p>{{ reto.objetivo }}</p>
+                </div>
+
+                <div class="bloque">
+                    <h3>Beneficios</h3>
+                    <p>{{ reto.beneficios }}</p>
+                </div>
+
+                <div class="bloque">
+                    <h3>Pasos del reto</h3>
+                    <ol class="lista-pasos">
+                        <li [innerHTML]="pasosSanitizados"></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección derecha con la imagen del dinosaurio -->
+        <div class="dino">
+            <img [src]="imagenCategoria" alt="Dino del reto" />
+        </div>
+
+    </div>
+</div>
+
+<!-- Mensaje que se muestra cuando no hay reto disponible -->
+<ng-template #sinReto>
+    <div class="no-reto">
+        <p>✨ ¡Mañana tendrás un nuevo reto, Duffy! ✨</p>
+    </div>
+</ng-template>

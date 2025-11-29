@@ -1,0 +1,594 @@
+/* ======== VARIABLES DE COLOR ======== */
+:root {
+  --bg-dark: #0d1b21;
+  --bg-card: #132830;
+  --accent-1: #4cc9f0;
+  --accent-2: #90e0ef;
+  --primary: #219ebc;
+  --success: #2a9d8f;
+  --danger: #e76f51;
+  --text-main: #ffffff;
+  --text-soft: #d6e6f2;
+  --edit-color: #ff6b6b;
+}
+
+/* ======== ESTILOS GENERALES ======== */
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Tarjetas */
+.card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.28);
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  opacity: 0.7;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.card-header h3 {
+  font-size: 22px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent-2);
+}
+
+/* Texto general */
+.label {
+  font-weight: bold;
+  color: var(--accent-1);
+  font-size: 15px;
+}
+
+.value {
+  color: var(--text-soft);
+  font-size: 16px;
+}
+
+/* ======== PERFIL MOSTRAR ======== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 22px;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.profile-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(3px);
+}
+
+
+
+/* ======== BOTONES MEJORADOS (SIN ICONOS) ======== */
+.edit-btn,
+.save-btn,
+.cancel-btn {
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.edit-btn {
+  background: var(--edit-color);
+  color: black;
+  border: 1px solid #ff5252;
+}
+
+.edit-btn:hover {
+  background: #ff5252;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+}
+
+.edit-btn:active {
+  transform: translateY(0) scale(1);
+}
+
+.save-btn {
+  background: var(--success);
+  color: white;
+  border: 1px solid #238f7a;
+  box-shadow: 0 4px 12px rgba(42, 157, 143, 0.3);
+}
+
+.save-btn:hover {
+  background: #238f7a;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(42, 157, 143, 0.4);
+}
+
+.save-btn:active {
+  transform: translateY(0) scale(1);
+}
+
+.cancel-btn {
+  background: var(--danger);
+  color: white;
+  border: 1px solid #d65a3e;
+  box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
+}
+
+.cancel-btn:hover {
+  background: #d65a3e;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(231, 111, 81, 0.4);
+}
+
+.cancel-btn:active {
+  transform: translateY(0) scale(1);
+}
+
+.btn-group {
+  margin-top: 22px;
+  display: flex;
+  gap: 14px;
+  justify-content: flex-end;
+}
+
+/* ======== FORMULARIO CORREGIDO ======== */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.form-grid label {
+  font-weight: bold;
+  color: var(--accent-2);
+  font-size: 15px;
+}
+
+/* ESTILOS CORREGIDOS PARA LOS SELECT */
+.form-grid select {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-dark);
+  border: 1px solid #2a3d4a;
+  border-radius: 10px;
+  color: var(--text-main);
+  outline: none;
+  transition: 0.3s ease;
+  font-size: 15px;
+  appearance: none; /* Quita el estilo por defecto del navegador */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234cc9f0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+/* Estilos para las opciones del select cuando está abierto */
+.form-grid select option {
+  background: white;
+  color: black;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-grid select:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+  background-color: var(--bg-dark);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2390e0ef' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+}
+
+/* Para navegadores Webkit (Chrome, Safari) */
+.form-grid select::-webkit-listbox,
+.form-grid select::-webkit-scrollbar-track {
+  background: white;
+}
+
+.form-grid select::-webkit-scrollbar-thumb {
+  background: var(--accent-1);
+  border-radius: 4px;
+}
+
+.form-grid select::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* ======== TARJETAS DE RETO Y CONSEJO ======== */
+.challenge-card {
+  text-align: center;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 40, 48, 0.9) 100%);
+}
+
+.challenge-title {
+  font-size: 26px;
+  color: black;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.challenge-desc {
+  color: var(--text-soft);
+  font-size: 16px;
+}
+
+.advice-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 40, 48, 0.9) 100%);
+}
+
+.advice-card .advice-content {
+  text-align: center;
+  padding: 18px;
+  font-size: 17px;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.advice-card .decoration {
+  margin-top: 12px;
+  font-size: 28px;
+  color: var(--accent-1);
+  animation: pulse 2s infinite;
+}
+
+/* ======== ANIMACIONES ======== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .edit-btn,
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-header h3 {
+    font-size: 20px;
+  }
+}
+
+/* ======== TARJETA DE RETO MEJORADA ======== */
+.challenge-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 40, 48, 0.95) 100%);
+  border: 1px solid rgba(76, 201, 240, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.challenge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+}
+
+.challenge-icon {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+}
+
+.motivacion-badge {
+  background: rgba(76, 201, 240, 0.1);
+  color: var(--accent-1);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(76, 201, 240, 0.3);
+}
+
+/* ======== CONTENIDO DEL RETO ======== */
+.challenge-content {
+  padding: 10px 0;
+}
+
+.reto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dificultad-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dificultad-badge.fácil {
+  background: linear-gradient(135deg, #2a9d8f, #4cc9f0);
+  color: white;
+  box-shadow: 0 4px 12px rgba(42, 157, 143, 0.3);
+}
+
+.dificultad-badge.media {
+  background: linear-gradient(135deg, #f4a261, #e9c46a);
+  color: var(--bg-dark);
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.3);
+}
+
+.dificultad-badge.difícil {
+  background: linear-gradient(135deg, #e76f51, #f4a261);
+  color: white;
+  box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
+}
+
+.reto-tiempo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-2);
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(144, 224, 239, 0.1);
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(144, 224, 239, 0.2);
+}
+
+/* ======== TÍTULO Y DESCRIPCIÓN ======== */
+.reto-titulo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-1) !important; /* Azul turquesa de tu paleta */
+  margin-bottom: 16px;
+  line-height: 1.3;
+  text-shadow: 0 2px 8px rgba(76, 201, 240, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-1);
+}
+
+.reto-descripcion {
+  color: var(--text-soft);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border-left: 3px solid var(--accent-1);
+}
+
+/* ======== FOOTER DEL RETO ======== */
+.reto-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.categoria-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-2);
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(76, 201, 240, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(76, 201, 240, 0.2);
+}
+
+/* ======== LOADING MEJORADO ======== */
+.loading-reto {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-soft);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(76, 201, 240, 0.3);
+  border-top: 3px solid var(--accent-1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-reto p {
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* ======== TARJETA DE CONSEJO MEJORADA ======== */
+.advice-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(19, 40, 48, 0.95) 100%);
+  border: 1px solid rgba(233, 196, 106, 0.1);
+}
+
+.advice-card::before {
+  background: linear-gradient(90deg, #e9c46a, #f4a261);
+}
+
+.advice-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.advice-content p {
+  font-size: 18px;
+  color: var(--text-soft);
+  font-weight: 500;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.decoration {
+  font-size: 32px;
+  color: #e9c46a;
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .reto-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .reto-titulo {
+    font-size: 20px;
+  }
+
+  .reto-descripcion {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+/* ======== FORM-GROUP PARA CAMPOS DEL FORMULARIO ======== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: var(--accent-2);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Campo INPUT */
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-dark);
+  border: 1px solid #2a3d4a;
+  border-radius: 10px;
+  color: var(--text-main);
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+/* Hover */
+.form-group input:hover {
+  border-color: var(--accent-1);
+}
+
+/* Focus */
+.form-group input:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+}
